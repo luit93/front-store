@@ -1,60 +1,89 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import MoreIcon from "@mui/icons-material/MoreVert";
+import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { orange } from "@mui/material/colors";
+import MenuButton from "../menu-button/MenuButton";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import TextField from "@mui/material/TextField";
+import Container from "@material-ui/core/Container/";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import {
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
 
-const StyledToolbar = styled(Toolbar)(({ theme }) => ({
-  alignItems: "flex-start",
-  paddingTop: theme.spacing(1),
-  paddingBottom: theme.spacing(2),
-  // Override media queries injected by theme.mixins.toolbar
-  "@media all": {
-    minHeight: 128,
+import { Link } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  navlinks: {
+    marginLeft: theme.spacing(10),
+    display: "flex",
+  },
+  logo: {
+    flexGrow: "1",
+    cursor: "pointer",
+    justifyContent: "flex-start",
+  },
+  link: {
+    textDecoration: "none",
+    color: "black",
+    fontSize: "20px",
+    marginLeft: theme.spacing(20),
+    "&:hover": {
+      color: "white",
+      borderBottom: "1px solid black",
+    },
   },
 }));
 
 const Banner = () => {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
   return (
-    <div>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          className="banner"
-          style={{ backgroundColor: "orange", color: "black" }}
-          position="static"
-        >
-          <StyledToolbar>
-            <Typography
-              variant="h5"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, alignSelf: "flex-end" }}
-            >
-              E-SHOP
-            </Typography>
-            <IconButton size="large" aria-label="search" color="inherit">
-              <SearchIcon />
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="display more actions"
-              edge="end"
-              color="inherit"
-            >
-              <ShoppingCartIcon />
-            </IconButton>
-          </StyledToolbar>
-        </AppBar>
-      </Box>
-    </div>
+    <Container>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: "orange", color: "black" }}
+      >
+        <CssBaseline />
+        <Toolbar>
+          <Typography variant="h4" className={classes.logo}>
+            <Link to="/" className={classes.link}>
+              TECH STORE
+            </Link>
+          </Typography>
+          <div
+            className={classes.navlinks}
+            showLabels
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          >
+            <div className="container">
+              <div>
+                <Link to="/store">
+                  <StorefrontIcon label="Store" className={classes.link} />
+                </Link>
+              </div>
+              <div>
+                <TextField id="outlined-basic" label="search" />
+              </div>
+              <div>
+                <Link to="/cart">
+                  <ShoppingCartIcon label="Cart" className={classes.link} />
+                </Link>
+              </div>
+
+              <div>
+                <MenuButton />
+              </div>
+            </div>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </Container>
   );
 };
-
 export default Banner;

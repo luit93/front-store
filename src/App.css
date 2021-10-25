@@ -1,7 +1,17 @@
 .App {
   text-align: center;
 }
-
+.footer {
+  /* margin-top: calc(5% + 60px); */
+  margin-top: auto;
+  width: 100vw;
+  bottom: 0;
+  position: absolute;
+}
+.container {
+  display: flex;
+  align-items: stretch;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
