@@ -43,10 +43,7 @@ const Banner = () => {
 
   return (
     <Container>
-      <AppBar
-        position="static"
-        style={{ backgroundColor: "orange", color: "black" }}
-      >
+      <AppBar position="static" style={{ color: "black" }}>
         <CssBaseline />
         <Toolbar>
           <Typography variant="h4" className={classes.logo}>

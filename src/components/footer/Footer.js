@@ -45,7 +45,9 @@ const Footer = () => {
     >
       <AppBar
         position="static"
-        style={{ backgroundColor: "orange", color: "black" }}
+        style={{
+          color: "black",
+        }}
       >
         <CssBaseline />
         <Toolbar>
