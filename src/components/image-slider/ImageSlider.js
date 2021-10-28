@@ -38,7 +38,7 @@ const ImageSlider = () => {
       </Box>
       <CardMedia
         component="img"
-        image="https://www.kaijubattle.net/uploads/2/9/5/7/29570123/edited/356179818.jpg"
+        image="https://cdn.vox-cdn.com/thumbor/avQXnY3_y3EE2SbGO_UwMnpZJyM=/0x0:2400x1566/1200x800/filters:focal(1008x591:1392x975)/cdn.vox-cdn.com/uploads/chorus_image/image/67708941/ps5_hardware_render.0.jpg"
         alt="placeholder image"
       />
     </Card>
