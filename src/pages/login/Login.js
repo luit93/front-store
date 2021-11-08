@@ -1,7 +1,11 @@
 import React from "react";
-
+import { RegForm } from "../../components/reg-form/RegForm";
 const Login = () => {
-  return <div>Login page</div>;
+  return (
+    <div>
+      <RegForm />
+    </div>
+  );
 };
 
 export default Login;

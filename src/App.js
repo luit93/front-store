@@ -10,7 +10,9 @@ import HomePage from "./pages/home-page/HomePage";
 import StorePage from "./pages/store-page/StorePage";
 import ShoppingCartPage from "./pages/shopping-cart/ShoppingCartPage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import CreateProfile from "./pages/create-profile/CreateProfile";
 import Login from "./pages/login/Login";
+import PageNotFound from "../src/components/page-not-found/PageNotFound.js";
 import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
@@ -39,8 +41,11 @@ function App() {
         <Router>
           <PageLayout sx={{ display: "flex" }} classeName={classes.root}>
             <Switch>
-              <Route exact path="/">
+              <Route exact path="/login">
                 <Login />
+              </Route>
+              <Route exact path="/create-profile">
+                <CreateProfile />
               </Route>
               <Route path="/home">
                 <HomePage />
@@ -51,6 +56,9 @@ function App() {
               </Route>
               <Route path="/cart">
                 <ShoppingCartPage />
+              </Route>
+              <Route exact path="*">
+                <PageNotFound />
               </Route>
               <Route path="/profile">
                 <ProfilePage />

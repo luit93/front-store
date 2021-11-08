@@ -10,9 +10,9 @@ import BusinessIcon from "@mui/icons-material/Business";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PersonIcon from "@mui/icons-material/Person";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
+import MenuButton from "../menu-button/MenuButton";
 import {
   AppBar,
   Toolbar,
@@ -89,7 +89,13 @@ const PageLayout = ({ children }) => {
                     />
                   </form>
                 </Grid>
-                <Grid item spacing={5} sm={4} justify-content="right" container>
+                <Grid
+                  item
+                  spacing={5}
+                  sm={4}
+                  justify-content="center"
+                  container
+                >
                   <Grid item>
                     <IconButton>
                       <Link
@@ -115,15 +121,12 @@ const PageLayout = ({ children }) => {
                     </IconButton>
                   </Grid>
                   <Grid item>
-                    <IconButton>
-                      <Link
-                        textDecoration="none"
-                        to="/profile"
-                        underline="none"
-                        className="exampleClass :hover ::after"
-                      >
-                        <PersonIcon />
-                      </Link>
+                    <IconButton
+                      textDecoration="none"
+                      underline="none"
+                      className="exampleClass :hover ::after"
+                    >
+                      <MenuButton />
                     </IconButton>
                   </Grid>
                 </Grid>

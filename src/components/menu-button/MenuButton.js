@@ -3,6 +3,8 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import PersonIcon from "@mui/icons-material/Person";
+
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
@@ -10,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "black",
     fontSize: "20px",
-    marginLeft: theme.spacing(20),
+    // marginLeft: theme.spacing(20),
     "&:hover": {
       color: "white",
-      borderBottom: "1px solid black",
+      // borderBottom: "1px solid black",
     },
   },
 }));
@@ -36,9 +38,9 @@ const MenuButton = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        style={{ backgroundColor: "orange", color: "black" }}
+        // style={{ backgroundColor: "orange", color: "black" }}
       >
-        <AccountBoxIcon className={classes.link} />
+        <PersonIcon className={classes.link} />
       </Button>
       <Menu
         id="basic-menu"
@@ -50,13 +52,25 @@ const MenuButton = () => {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <Link to="/account">My Account</Link>
+          <Link
+            textDecoration="none"
+            to="/profile"
+            underline="none"
+            className="exampleClass :hover ::after"
+          >
+            My Account
+          </Link>
         </MenuItem>
+
         <MenuItem onClick={handleClose}>
-          <Link to="/orders">My Orders</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="/login">Logout</Link>
+          <Link
+            textDecoration="none"
+            to="/login"
+            underline="none"
+            className="exampleClass :hover ::after"
+          >
+            Log In
+          </Link>
         </MenuItem>
       </Menu>
     </div>
