@@ -11,7 +11,11 @@ import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Box from "@material-ui/core/Box";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Grid from "@material-ui/core/Grid";
+import Drawer from "@material-ui/core/Drawer";
+
 import MenuButton from "../menu-button/MenuButton";
 import {
   AppBar,
@@ -22,7 +26,9 @@ import {
 } from "@material-ui/core";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 
+const drawerWidth = 240;
 const useStyles = makeStyles({
   page: {
     background: "#f9f9f9",
@@ -40,6 +46,43 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     minHeight: `calc(100% - 300px)`,
   },
+  drawer: {
+    // width: 0,
+    // minHeight: "80vh",
+    // height: "calc(100% - 64px)",
+    // top: 64,
+    position: "static",
+    transition: "width .7s",
+  },
+
+  closed: {
+    width: "0px",
+  },
+  opened: {
+    width: "240px",
+  },
+  title: {
+    margin: "auto",
+  },
+  container: {
+    display: "flex",
+    flex: 1,
+  },
+  root2: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    textAlign: "center",
+  },
+  main: {
+    flex: 1,
+  },
+  up: {
+    display: "flex",
+    justifyContent: "right",
+    marginLeft: "auto",
+    marginRight: 0,
+  },
 });
 const PageLayout = ({ children }) => {
   // const [value, setValue] = useState(0);
@@ -51,14 +94,21 @@ const PageLayout = ({ children }) => {
     }
   };
   const classes = useStyles();
+  const [isOpened, setIsOpened] = useState(false);
 
   return (
-    <div className="page-layout">
+    <div className={classes.root}>
       {/* <div sx={{ display: "flex" }}> */}
       <Grid container sx={{ display: "flex" }}>
         <Grid item sm={12}>
           <AppBar position="fixed">
             <Toolbar>
+              <IconButton
+                className="exampleClass :hover ::after"
+                onClick={() => setIsOpened(!isOpened)}
+              >
+                {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
+              </IconButton>
               <Grid container maxWidth="lg" spacing={4}>
                 <Grid item sm={4}>
                   <Typography variant="h6" color="secondary">
@@ -100,18 +150,6 @@ const PageLayout = ({ children }) => {
                     <IconButton>
                       <Link
                         textDecoration="none"
-                        to="/store"
-                        underline="none"
-                        className="exampleClass :hover ::after"
-                      >
-                        <StorefrontIcon />
-                      </Link>
-                    </IconButton>
-                  </Grid>
-                  <Grid item>
-                    <IconButton>
-                      <Link
-                        textDecoration="none"
                         to="/cart"
                         underline="none"
                         className="exampleClass :hover ::after"
@@ -133,6 +171,23 @@ const PageLayout = ({ children }) => {
               </Grid>
             </Toolbar>
           </AppBar>
+          <Toolbar />
+          <div className={classes.container}>
+            <Drawer
+              variant="permanent"
+              classes={{
+                paper: clsx(classes.drawer, {
+                  [classes.closed]: !isOpened,
+                  [classes.opened]: isOpened,
+                }),
+              }}
+            >
+              Drawer
+            </Drawer>
+            <main className={classes.main}>
+              <div>{children}</div>
+            </main>
+          </div>
         </Grid>
         <Grid item sm={12}>
           <Paper>

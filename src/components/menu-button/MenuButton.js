@@ -61,7 +61,27 @@ const MenuButton = () => {
             My Account
           </Link>
         </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link
+            textDecoration="none"
+            to="/history"
+            underline="none"
+            className="exampleClass :hover ::after"
+          >
+            Order History
+          </Link>
+        </MenuItem>
 
+        <MenuItem onClick={handleClose}>
+          <Link
+            textDecoration="none"
+            to="/cart"
+            underline="none"
+            className="exampleClass :hover ::after"
+          >
+            Cart
+          </Link>
+        </MenuItem>
         <MenuItem onClick={handleClose}>
           <Link
             textDecoration="none"
