@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import CircularProgress from "@mui/material/CircularProgress";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import Paper from "@material-ui/core/Paper";
@@ -15,7 +22,8 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Grid from "@material-ui/core/Grid";
 import Drawer from "@material-ui/core/Drawer";
-
+import { getCategories } from "./CategoryAction";
+import { useDispatch } from "react-redux";
 import MenuButton from "../menu-button/MenuButton";
 import {
   AppBar,
@@ -86,6 +94,11 @@ const useStyles = makeStyles({
 });
 const PageLayout = ({ children }) => {
   // const [value, setValue] = useState(0);
+  const dispatch = useDispatch();
+  const { isPending, catList } = useSelector((state) => state.category);
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
   const [searchItem, setSearchItem] = useState("");
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -100,17 +113,21 @@ const PageLayout = ({ children }) => {
     <div className={classes.root}>
       {/* <div sx={{ display: "flex" }}> */}
       <Grid container sx={{ display: "flex" }}>
-        <Grid item sm={12}>
+        {/* //header */}
+        <Grid item sm={12} container>
           <AppBar position="fixed">
             <Toolbar>
-              <IconButton
-                className="exampleClass :hover ::after"
-                onClick={() => setIsOpened(!isOpened)}
-              >
-                {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
-              </IconButton>
               <Grid container maxWidth="lg" spacing={4}>
-                <Grid item sm={4}>
+                <Grid item sm={2}>
+                  <IconButton
+                    className="exampleClass :hover ::after"
+                    onClick={() => setIsOpened(!isOpened)}
+                  >
+                    {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
+                  </IconButton>
+                </Grid>
+                {/* <Grid container maxWidth="lg" spacing={4}> */}
+                <Grid item sm={3}>
                   <Typography variant="h6" color="secondary">
                     <Link
                       textDecoration="none"
@@ -142,22 +159,10 @@ const PageLayout = ({ children }) => {
                 <Grid
                   item
                   spacing={5}
-                  sm={4}
+                  sm={3}
                   justify-content="center"
                   container
                 >
-                  <Grid item>
-                    <IconButton>
-                      <Link
-                        textDecoration="none"
-                        to="/cart"
-                        underline="none"
-                        className="exampleClass :hover ::after"
-                      >
-                        <ShoppingCartIcon />
-                      </Link>
-                    </IconButton>
-                  </Grid>
                   <Grid item>
                     <IconButton
                       textDecoration="none"
@@ -172,6 +177,9 @@ const PageLayout = ({ children }) => {
             </Toolbar>
           </AppBar>
           <Toolbar />
+        </Grid>
+        {/* ///dynamic area */}
+        <Grid item sm={12} className="main">
           <div className={classes.container}>
             <Drawer
               variant="permanent"
@@ -182,20 +190,27 @@ const PageLayout = ({ children }) => {
                 }),
               }}
             >
-              Drawer
+              {isPending && <CircularProgress color="inherit" />}
+              <List>
+                {catList?.length &&
+                  catList.map((row) => (
+                    <ListItem key={row._id}>
+                      <ListItemText primary={row.name} />
+                    </ListItem>
+                  ))}
+              </List>
+
+              {/* //list of categories */}
             </Drawer>
             <main className={classes.main}>
               <div>{children}</div>
             </main>
           </div>
-        </Grid>
-        <Grid item sm={12}>
-          <Paper>
-            <div className={classes.page}>{children}</div>
-          </Paper>
+          <Paper>{/* <div className={classes.page}>{children}</div> */}</Paper>
         </Grid>
         {/* </div> */}
         {/* <div> */}
+        {/* //footer */}
         <Grid item sm={12}>
           <AppBar
             anchor="bottom"

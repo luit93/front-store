@@ -4,19 +4,21 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonIcon from "@mui/icons-material/Person";
-
+import HistoryIcon from "@mui/icons-material/History";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography } from "@material-ui/core";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from "@mui/icons-material/Logout";
 const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: "none",
     color: "black",
     fontSize: "20px",
     // marginLeft: theme.spacing(20),
-    "&:hover": {
-      color: "white",
-      // borderBottom: "1px solid black",
-    },
+    // "&:hover": {
+    //   color: "black",
+    //   // borderBottom: "1px solid black",
+    // },
   },
 }));
 const MenuButton = () => {
@@ -40,7 +42,8 @@ const MenuButton = () => {
         onClick={handleClick}
         // style={{ backgroundColor: "orange", color: "black" }}
       >
-        <PersonIcon className={classes.link} />
+        {/* <PersonIcon className={classes.link} /> */}
+        <Typography className={classes.link}>HI, Luit</Typography>
       </Button>
       <Menu
         id="basic-menu"
@@ -58,7 +61,7 @@ const MenuButton = () => {
             underline="none"
             className="exampleClass :hover ::after"
           >
-            My Account
+            <PersonIcon /> My Account
           </Link>
         </MenuItem>
         <MenuItem onClick={handleClose}>
@@ -68,7 +71,7 @@ const MenuButton = () => {
             underline="none"
             className="exampleClass :hover ::after"
           >
-            Order History
+            <HistoryIcon /> Order History
           </Link>
         </MenuItem>
 
@@ -79,6 +82,7 @@ const MenuButton = () => {
             underline="none"
             className="exampleClass :hover ::after"
           >
+            <ShoppingCartIcon />
             Cart
           </Link>
         </MenuItem>
@@ -89,7 +93,7 @@ const MenuButton = () => {
             underline="none"
             className="exampleClass :hover ::after"
           >
-            Log In
+            <LogoutIcon /> Log Out
           </Link>
         </MenuItem>
       </Menu>
