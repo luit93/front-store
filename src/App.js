@@ -51,8 +51,7 @@ function App() {
                 <HomePage />
               </Route>
               <Route path="/store">
-                {/* <StorePage /> */}
-                <CatNav />
+                <StorePage />
               </Route>
               <Route path="/cart">
                 <ShoppingCartPage />

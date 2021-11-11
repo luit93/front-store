@@ -2,9 +2,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import * as React from "react";
 import Button from "@mui/material/Button";
-// import { Link } from "react-router-dom";
-import Link from "@mui/material/Link";
-
+import { Link } from "react-router-dom";
+// import Link from "@mui/material/Link";
+import { useState } from "react";
 import { makeStyles, Typography } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -21,9 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 const SubMenu = ({ parentName, childCatList, parentId }) => {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
+
+  const handleHover = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -35,8 +36,10 @@ const SubMenu = ({ parentName, childCatList, parentId }) => {
         aria-controls="basic-menu"
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
+        // onClick={handleClick}
+        onMouseOver={handleHover}
         style={{ color: "black" }}
+        to="/store"
       >
         <Typography>{parentName}</Typography>
       </Link>
@@ -47,13 +50,16 @@ const SubMenu = ({ parentName, childCatList, parentId }) => {
         onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
+          onMouseLeave: handleClose,
         }}
       >
         {childCatList.map(
           (item) =>
             item.parentCat === parentId && (
               <MenuItem onClick={handleClose}>
-                <Link style={{ color: "black" }}>{item.name}</Link>
+                <Link to="/store" style={{ color: "black" }}>
+                  {item.name}
+                </Link>
               </MenuItem>
             )
         )}

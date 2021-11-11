@@ -187,6 +187,7 @@ const PageLayout = ({ children }) => {
           <Toolbar />
         </Grid>
         {/* ///dynamic area */}
+        {/* //list of categories */}
         <Grid item sm={12} className="main">
           <div className={classes.container}>
             <Drawer
@@ -199,22 +200,7 @@ const PageLayout = ({ children }) => {
               }}
             >
               {isPending && <CircularProgress color="inherit" />}
-              {/* <List>
-                {catList?.length &&
-                  catList.map(
-                    (row) =>
-                      row.parentCat !== null && (
-                        <ListItem key={row._id}>
-                          <Link style={{ color: "black" }}>
-                            <ListItemText primary={row.name} />
-                            <div>
-                              {catList.filter((row) => row.parentCat === key)}
-                            </div>
-                          </Link>
-                        </ListItem>
-                      )
-                  )}
-              </List> */}
+
               {parentCats?.length &&
                 parentCats.map((row) => (
                   <List>
@@ -230,14 +216,6 @@ const PageLayout = ({ children }) => {
                     </ListItem>
                   </List>
                 ))}
-
-              {/* <List>
-                {catList.map((row) => (
-                  <SubMenu>{row.name}</SubMenu>
-                ))}
-              </List> */}
-
-              {/* //list of categories */}
             </Drawer>
             <main className={classes.main}>
               {/* <div>{children}</div> */}
