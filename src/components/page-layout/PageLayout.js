@@ -25,6 +25,7 @@ import Drawer from "@material-ui/core/Drawer";
 import { getCategories } from "./CategoryAction";
 import { useDispatch } from "react-redux";
 import MenuButton from "../menu-button/MenuButton";
+import SubMenu from "../sub-menu/SubMenu";
 import {
   AppBar,
   Toolbar,
@@ -34,6 +35,8 @@ import {
 } from "@material-ui/core";
 import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
+// import Link from "@mui/material/Link";
+
 import clsx from "clsx";
 
 const drawerWidth = 240;
@@ -108,7 +111,11 @@ const PageLayout = ({ children }) => {
   };
   const classes = useStyles();
   const [isOpened, setIsOpened] = useState(false);
+  /*  */
 
+  const parentCats = catList.filter((row) => !row.parentCat);
+  console.log(parentCats);
+  const childCats = catList.filter((row) => row.parentCat);
   return (
     <div className={classes.root}>
       {/* <div sx={{ display: "flex" }}> */}
@@ -120,7 +127,7 @@ const PageLayout = ({ children }) => {
               <Grid container maxWidth="lg" spacing={4}>
                 <Grid item sm={2}>
                   <IconButton
-                    className="exampleClass :hover ::after"
+                    // className="exampleClass :hover ::after"
                     onClick={() => setIsOpened(!isOpened)}
                   >
                     {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
@@ -133,6 +140,7 @@ const PageLayout = ({ children }) => {
                       textDecoration="none"
                       to="/home"
                       underline="none"
+                      style={{ color: "black" }}
                       className="exampleClass :hover ::after"
                     >
                       🤖TECH_STORE🤖
@@ -191,19 +199,49 @@ const PageLayout = ({ children }) => {
               }}
             >
               {isPending && <CircularProgress color="inherit" />}
-              <List>
+              {/* <List>
                 {catList?.length &&
-                  catList.map((row) => (
+                  catList.map(
+                    (row) =>
+                      row.parentCat !== null && (
+                        <ListItem key={row._id}>
+                          <Link style={{ color: "black" }}>
+                            <ListItemText primary={row.name} />
+                            <div>
+                              {catList.filter((row) => row.parentCat === key)}
+                            </div>
+                          </Link>
+                        </ListItem>
+                      )
+                  )}
+              </List> */}
+              {parentCats?.length &&
+                parentCats.map((row) => (
+                  <List>
                     <ListItem key={row._id}>
-                      <ListItemText primary={row.name} />
+                      {/* <Link style={{ color: "black" }}>
+                        <ListItemText primary={row.name} />{" "}
+                      </Link> */}
+                      <SubMenu
+                        parentName={row.name}
+                        parentId={row._id}
+                        childCatList={childCats}
+                      />
                     </ListItem>
-                  ))}
-              </List>
+                  </List>
+                ))}
+
+              {/* <List>
+                {catList.map((row) => (
+                  <SubMenu>{row.name}</SubMenu>
+                ))}
+              </List> */}
 
               {/* //list of categories */}
             </Drawer>
             <main className={classes.main}>
-              <div>{children}</div>
+              {/* <div>{children}</div> */}
+              <div></div>
             </main>
           </div>
           <Paper>{/* <div className={classes.page}>{children}</div> */}</Paper>
@@ -236,6 +274,7 @@ const PageLayout = ({ children }) => {
                           textDecoration="none"
                           to="/about"
                           underline="none"
+                          style={{ color: "black" }}
                           className="exampleClass :hover ::after"
                         >
                           <BusinessIcon label="About" />
@@ -249,6 +288,7 @@ const PageLayout = ({ children }) => {
                           to="/help"
                           underline="none"
                           className="exampleClass :hover ::after"
+                          style={{ color: "black" }}
                         >
                           <LiveHelpIcon label="Help" />
                         </Link>

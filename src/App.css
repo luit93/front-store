@@ -67,6 +67,9 @@
   flex: 1;
   min-height: 80vh;
 }
+.link {
+  color: black;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

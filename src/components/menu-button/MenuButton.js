@@ -5,7 +5,9 @@ import MenuItem from "@mui/material/MenuItem";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonIcon from "@mui/icons-material/Person";
 import HistoryIcon from "@mui/icons-material/History";
+// import Link from "@mui/material/Link";
 import { Link } from "react-router-dom";
+
 import { makeStyles, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -58,8 +60,9 @@ const MenuButton = () => {
           <Link
             textDecoration="none"
             to="/profile"
-            underline="none"
-            className="exampleClass :hover ::after"
+            underline="hover"
+            style={{ color: "black" }}
+            // className="exampleClass :hover ::after"
           >
             <PersonIcon /> My Account
           </Link>
@@ -68,8 +71,9 @@ const MenuButton = () => {
           <Link
             textDecoration="none"
             to="/history"
-            underline="none"
-            className="exampleClass :hover ::after"
+            underline="hover"
+            style={{ color: "black" }}
+            // className="exampleClass :hover ::after"
           >
             <HistoryIcon /> Order History
           </Link>
@@ -79,8 +83,9 @@ const MenuButton = () => {
           <Link
             textDecoration="none"
             to="/cart"
-            underline="none"
-            className="exampleClass :hover ::after"
+            variant="inherit"
+            underline="hover"
+            style={{ color: "black" }} // className="exampleClass :hover ::after"
           >
             <ShoppingCartIcon />
             Cart
@@ -90,8 +95,8 @@ const MenuButton = () => {
           <Link
             textDecoration="none"
             to="/login"
-            underline="none"
-            className="exampleClass :hover ::after"
+            underline="hover"
+            style={{ color: "black" }} // className="exampleClass :hover ::after"
           >
             <LogoutIcon /> Log Out
           </Link>
