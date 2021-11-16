@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getProducts } from "./StoreAction";
+import { getProducts } from "./ProductAction";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
@@ -11,10 +11,10 @@ const useStyles = makeStyles({
     display: "flex",
   },
 });
-const StorePage = ({ category }) => {
+const ProductPage = ({ category }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { isPending, productList } = useSelector((state) => state.category);
+  const { isPending, productList } = useSelector((state) => state.product);
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
@@ -22,7 +22,9 @@ const StorePage = ({ category }) => {
     <Grid container>
       {productList.map((item) => (
         <Grid item xs={12} sm={6} md={3} container>
-          <Grid item>{item.title}</Grid>
+          <Grid item>
+            <p>{item.title}</p>
+          </Grid>
           <Grid item>{item.brand}</Grid>
           <Grid item>{item.price}</Grid>
           <Grid item>{item.description}</Grid>
@@ -32,4 +34,4 @@ const StorePage = ({ category }) => {
   );
 };
 
-export default StorePage;
+export default ProductPage;

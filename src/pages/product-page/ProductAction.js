@@ -1,4 +1,4 @@
-import { reqPending, reqFails, fetchProductsSuccess } from "./StoreSlice";
+import { reqPending, reqFails, fetchProductsSuccess } from "./ProductSlice";
 import { fetchProduct } from "../../apis/productApi";
 
 export const getProducts = async (dispatch) => {
