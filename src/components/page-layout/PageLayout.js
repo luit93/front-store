@@ -26,6 +26,7 @@ import { getCategories } from "./CategoryAction";
 import { useDispatch } from "react-redux";
 import MenuButton from "../menu-button/MenuButton";
 import SubMenu from "../sub-menu/SubMenu";
+import CatPage from "../../pages/product-page/CatPage";
 import {
   AppBar,
   Toolbar,
@@ -218,7 +219,7 @@ const PageLayout = ({ children }) => {
                 ))}
             </Drawer>
             <main className={classes.main}>
-              {/* <div>{children}</div> */}
+              <div>{children}</div>
               <div></div>
             </main>
           </div>

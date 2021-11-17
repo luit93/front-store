@@ -57,7 +57,7 @@ const SubMenu = ({ parentName, childCatList, parentId }) => {
           (item) =>
             item.parentCat === parentId && (
               <MenuItem onClick={handleClose}>
-                <Link to="/product" style={{ color: "black" }}>
+                <Link to={`/category/${item.slug}`} style={{ color: "black" }}>
                   {item.name}
                 </Link>
               </MenuItem>

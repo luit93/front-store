@@ -7,13 +7,14 @@ const rootUrl =
 
 const catAPI = rootUrl + "/api/v1/category";
 
-export const fetchCategory = async () => {
+export const fetchCategory = async (slug) => {
   try {
-    const { data } = await axios.get(catAPI);
+    const apiEndpoint = slug ? catAPI + "/" + slug : catAPI;
+    const { data } = await axios.get(apiEndpoint);
 
     return data;
   } catch (error) {
     console.log(error);
-    return { status: "error", message: error.message };
+    return error?.response?.data || { status: "error", message: error.message };
   }
 };

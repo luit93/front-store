@@ -7,7 +7,7 @@ import CatNav from "./components/CatNav/CatNav";
 
 import { deepOrange } from "@mui/material/colors";
 import HomePage from "./pages/home-page/HomePage";
-import ProductPage from "./pages/product-page/ProductPage";
+import CatPage from "./pages/product-page/CatPage";
 import ShoppingCartPage from "./pages/shopping-cart/ShoppingCartPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 import CreateProfile from "./pages/create-profile/CreateProfile";
@@ -47,20 +47,24 @@ function App() {
               <Route exact path="/create-profile">
                 <CreateProfile />
               </Route>
-              <Route path="/home">
+              <Route exact path="/home">
                 <HomePage />
               </Route>
-              <Route path="/product">
-                <ProductPage />
+              <Route exact path="/category/:slug">
+                <CatPage />
               </Route>
-              <Route path="/cart">
+              <Route exact path="/product/:slug">
+                todo
+              </Route>
+              <Route exact path="/cart">
                 <ShoppingCartPage />
+              </Route>
+
+              <Route exact path="/profile">
+                <ProfilePage />
               </Route>
               <Route exact path="*">
                 <PageNotFound />
-              </Route>
-              <Route path="/profile">
-                <ProfilePage />
               </Route>
             </Switch>
           </PageLayout>

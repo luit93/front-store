@@ -7,6 +7,7 @@ const initialState = {
 
 const productSlice = createSlice({
   name: "prodSlice",
+  initialState,
   reducers: {
     reqPending: (state) => {
       state.isPending = true;

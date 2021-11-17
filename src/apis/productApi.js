@@ -7,13 +7,15 @@ const rootUrl =
 
 const productAPI = rootUrl + "/api/v1/product";
 
-export const fetchProduct = async () => {
+export const fetchProduct = async (_id) => {
   try {
-    const { data } = await axios.get(productAPI);
+    const apiEndpoint = _id ? productAPI + "/" + _id : productAPI;
+    const { data } = await axios.get(apiEndpoint);
+    console.log(data);
 
     return data;
   } catch (error) {
     console.log(error);
-    return { status: "error", message: error.message };
+    return error?.response?.data || { status: "error", message: error.message };
   }
 };
