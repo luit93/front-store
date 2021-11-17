@@ -1,8 +1,9 @@
 import React from "react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Grid from "@material-ui/core/Grid";
 import BusinessIcon from "@mui/icons-material/Business";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import Container from "@material-ui/core/Container/";
+
 import {
   AppBar,
   Toolbar,
@@ -10,67 +11,60 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import IconButton from "@mui/material/IconButton";
 import { Link } from "react-router-dom";
-
-const useStyles = makeStyles((theme) => ({
-  navlinks: {
-    marginLeft: theme.spacing(10),
-    display: "flex",
-  },
-  logo: {
-    flexGrow: "1",
-    cursor: "pointer",
-  },
-  link: {
-    textDecoration: "none",
-    color: "black",
-    fontSize: "20px",
-    marginLeft: theme.spacing(20),
-    "&:hover": {
-      color: "white",
-      borderBottom: "1px solid black",
-    },
-  },
-}));
-
 const Footer = () => {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
   return (
-    <Container
-      position="fixed"
-      sx={{ top: "auto", bottom: 0 }}
-      className="footer"
+    <AppBar
+      anchor="bottom"
+      px={{ xs: 3, sm: 10 }}
+      py={{ xs: 5, sm: 10 }}
+      // className={classes.footer}
+      // position="fixed"
+      position="static"
+      color="primary"
     >
-      <AppBar
-        position="static"
-        style={{
-          color: "black",
-        }}
-      >
-        <CssBaseline />
+      <Container maxWidth="lg">
         <Toolbar>
-          <div
-            className={classes.navlinks}
-            showLabels
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-          >
-            <Link to="/about" className={classes.link}>
-              <BusinessIcon label="About" />
-            </Link>
-            <Link to="/help" className={classes.link}>
-              <LiveHelpIcon label="Help" />
-            </Link>
-            <Link to="/address" className={classes.link}>
-              <LocationOnIcon label="Address" />
-            </Link>
-          </div>
+          <Grid container maxWidth="lg" spacing={4}>
+            <Grid item sm={6} xs={8}>
+              <Typography variant="body1" color="inherit">
+                © 2021 Luit
+              </Typography>
+            </Grid>
+            <Grid item sm={6} xs={4} container>
+              <Grid item xs={6}>
+                <IconButton>
+                  <Link
+                    textDecoration="none"
+                    to="/about"
+                    underline="none"
+                    style={{ color: "black" }}
+                    className="exampleClass :hover ::after"
+                  >
+                    <BusinessIcon label="About" />
+                  </Link>
+                </IconButton>
+              </Grid>
+              <Grid item xs={6}>
+                <IconButton>
+                  <Link
+                    textDecoration="none"
+                    to="/help"
+                    underline="none"
+                    className="exampleClass :hover ::after"
+                    style={{ color: "black" }}
+                  >
+                    <LiveHelpIcon label="Help" />
+                  </Link>
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Grid>
         </Toolbar>
-      </AppBar>
-    </Container>
+      </Container>
+    </AppBar>
   );
 };
+
 export default Footer;

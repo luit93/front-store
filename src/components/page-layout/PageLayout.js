@@ -3,21 +3,15 @@ import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@mui/material/TextField";
 import Container from "@material-ui/core/Container/";
 import SearchIcon from "@mui/icons-material/Search";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BusinessIcon from "@mui/icons-material/Business";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
-import StorefrontIcon from "@mui/icons-material/Storefront";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Box from "@material-ui/core/Box";
+
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import Grid from "@material-ui/core/Grid";
@@ -229,55 +223,7 @@ const PageLayout = ({ children }) => {
         {/* <div> */}
         {/* //footer */}
         <Grid item sm={12}>
-          <AppBar
-            anchor="bottom"
-            px={{ xs: 3, sm: 10 }}
-            py={{ xs: 5, sm: 10 }}
-            // className={classes.footer}
-            // position="fixed"
-            position="static"
-            color="primary"
-          >
-            <Container maxWidth="lg">
-              <Toolbar>
-                <Grid container maxWidth="lg" spacing={4}>
-                  <Grid item sm={6} xs={8}>
-                    <Typography variant="body1" color="inherit">
-                      © 2021 Luit
-                    </Typography>
-                  </Grid>
-                  <Grid item sm={6} xs={4} container>
-                    <Grid item xs={6}>
-                      <IconButton>
-                        <Link
-                          textDecoration="none"
-                          to="/about"
-                          underline="none"
-                          style={{ color: "black" }}
-                          className="exampleClass :hover ::after"
-                        >
-                          <BusinessIcon label="About" />
-                        </Link>
-                      </IconButton>
-                    </Grid>
-                    <Grid item xs={6}>
-                      <IconButton>
-                        <Link
-                          textDecoration="none"
-                          to="/help"
-                          underline="none"
-                          className="exampleClass :hover ::after"
-                          style={{ color: "black" }}
-                        >
-                          <LiveHelpIcon label="Help" />
-                        </Link>
-                      </IconButton>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Toolbar>
-            </Container>
-          </AppBar>
+          <Footer />
         </Grid>
         {/* </div> */}
       </Grid>
