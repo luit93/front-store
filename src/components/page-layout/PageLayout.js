@@ -181,7 +181,7 @@ const PageLayout = ({ children }) => {
           </AppBar>
           <Toolbar />
         </Grid>
-        {/* ///dynamic area */}
+
         {/* //list of categories */}
         <Grid item sm={12} className="main">
           <div className={classes.container}>
@@ -212,6 +212,7 @@ const PageLayout = ({ children }) => {
                   </List>
                 ))}
             </Drawer>
+
             <main className={classes.main}>
               <div>{children}</div>
               <div></div>

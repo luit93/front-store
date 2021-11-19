@@ -35,14 +35,21 @@ const useStyles = makeStyles({
     position: "static",
     transition: "width .7s",
   },
+  container: {
+    display: "flex",
+    flex: 1,
+  },
   root: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
     minHeight: `calc(100% - 300px)`,
   },
+  main: {
+    flex: 1,
+  },
 });
-const NavBar = () => {
+const NavBar = ({ children }) => {
   const dispatch = useDispatch();
   const { isPending, catList } = useSelector((state) => state.category);
   useEffect(() => {
@@ -122,34 +129,40 @@ const NavBar = () => {
         </AppBar>
         <Toolbar />
       </Grid>
-      <Grid item sm={12} container>
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: clsx(classes.drawer, {
-              [classes.closed]: !isOpened,
-              [classes.opened]: isOpened,
-            }),
-          }}
-        >
-          {isPending && <CircularProgress color="inherit" />}
+      <Grid item sm={12} className="main">
+        <div className={classes.container}>
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: clsx(classes.drawer, {
+                [classes.closed]: !isOpened,
+                [classes.opened]: isOpened,
+              }),
+            }}
+          >
+            {isPending && <CircularProgress color="inherit" />}
 
-          {parentCats?.length &&
-            parentCats.map((row) => (
-              <List>
-                <ListItem key={row._id}>
-                  {/* <Link style={{ color: "black" }}>
+            {parentCats?.length &&
+              parentCats.map((row) => (
+                <List>
+                  <ListItem key={row._id}>
+                    {/* <Link style={{ color: "black" }}>
                         <ListItemText primary={row.name} />{" "}
                       </Link> */}
-                  <SubMenu
-                    parentName={row.name}
-                    parentId={row._id}
-                    childCatList={childCats}
-                  />
-                </ListItem>
-              </List>
-            ))}
-        </Drawer>
+                    <SubMenu
+                      parentName={row.name}
+                      parentId={row._id}
+                      childCatList={childCats}
+                    />
+                  </ListItem>
+                </List>
+              ))}
+          </Drawer>
+          <main className={classes.main}>
+            <div>{children}</div>
+            <div></div>
+          </main>
+        </div>
       </Grid>
     </Grid>
   );
