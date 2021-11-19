@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: "none",
     color: "black",
-    fontSize: "20px",
+
     // marginLeft: theme.spacing(20),
     // "&:hover": {
     //   color: "black",
@@ -45,7 +45,19 @@ const MenuButton = () => {
         // style={{ backgroundColor: "orange", color: "black" }}
       >
         {/* <PersonIcon className={classes.link} /> */}
-        <Typography className={classes.link}>HI, Luit</Typography>
+        <Typography
+          sx={{
+            fontSize: {
+              lg: 30,
+              md: 20,
+              sm: 15,
+              xs: 10,
+            },
+          }}
+          className={classes.link}
+        >
+          HI, Luit
+        </Typography>
       </Button>
       <Menu
         id="basic-menu"

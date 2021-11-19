@@ -32,8 +32,8 @@ const Footer = () => {
                 © 2021 Luit
               </Typography>
             </Grid>
-            <Grid item sm={6} xs={4} container>
-              <Grid item xs={6}>
+            <Grid spacing={{ xs: 8 }} item sm={6} xs={4} container>
+              <Grid item sm={6} xs={12}>
                 <IconButton>
                   <Link
                     textDecoration="none"
@@ -46,7 +46,7 @@ const Footer = () => {
                   </Link>
                 </IconButton>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item sm={6} xs={12}>
                 <IconButton>
                   <Link
                     textDecoration="none"

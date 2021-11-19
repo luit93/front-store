@@ -115,7 +115,7 @@ const PageLayout = ({ children }) => {
     <div className={classes.root}>
       {/* <div sx={{ display: "flex" }}> */}
       <Grid container sx={{ display: "flex" }}>
-        {/* //header */}
+        {/* //navigation bar */}
         <Grid item sm={12} container>
           <AppBar position="fixed">
             <Toolbar>
@@ -129,7 +129,7 @@ const PageLayout = ({ children }) => {
                   </IconButton>
                 </Grid>
                 {/* <Grid container maxWidth="lg" spacing={4}> */}
-                <Grid item sm={3}>
+                <Grid item sm={6} xs={6}>
                   <Typography variant="h6" color="secondary">
                     <Link
                       textDecoration="none"
@@ -142,27 +142,13 @@ const PageLayout = ({ children }) => {
                     </Link>
                   </Typography>
                 </Grid>
-                <Grid item sm={4}>
-                  <form noValidate onSubmit={handleOnSubmit}>
-                    <TextField
-                      onChange={(e) => setSearchItem(e.target.value)}
-                      label="Search"
-                      size="small"
-                      required
-                      InputProps={{
-                        endAdornment: (
-                          <IconButton type="submit">
-                            <SearchIcon />
-                          </IconButton>
-                        ),
-                      }}
-                    />
-                  </form>
-                </Grid>
+                {/* search bar */}
+
                 <Grid
                   item
                   spacing={5}
                   sm={3}
+                  xs={4}
                   justify-content="center"
                   container
                 >
@@ -181,9 +167,9 @@ const PageLayout = ({ children }) => {
           </AppBar>
           <Toolbar />
         </Grid>
-
+        {/* ///dynamic area */}
         {/* //list of categories */}
-        <Grid item sm={12} className="main">
+        <Grid item sm={12} xs={6} className="main">
           <div className={classes.container}>
             <Drawer
               variant="permanent"
@@ -195,6 +181,22 @@ const PageLayout = ({ children }) => {
               }}
             >
               {isPending && <CircularProgress color="inherit" />}
+              <div></div>
+              <form noValidate onSubmit={handleOnSubmit}>
+                <TextField
+                  onChange={(e) => setSearchItem(e.target.value)}
+                  label="Search"
+                  size="small"
+                  required
+                  InputProps={{
+                    endAdornment: (
+                      <IconButton type="submit">
+                        <SearchIcon />
+                      </IconButton>
+                    ),
+                  }}
+                />
+              </form>
 
               {parentCats?.length &&
                 parentCats.map((row) => (
@@ -212,7 +214,6 @@ const PageLayout = ({ children }) => {
                   </List>
                 ))}
             </Drawer>
-
             <main className={classes.main}>
               <div>{children}</div>
               <div></div>
@@ -223,7 +224,7 @@ const PageLayout = ({ children }) => {
         {/* </div> */}
         {/* <div> */}
         {/* //footer */}
-        <Grid item sm={12}>
+        <Grid item sm={12} xs={12}>
           <Footer />
         </Grid>
         {/* </div> */}

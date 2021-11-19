@@ -49,12 +49,7 @@ const useStyles = makeStyles({
     flex: 1,
   },
 });
-const NavBar = ({ children }) => {
-  const dispatch = useDispatch();
-  const { isPending, catList } = useSelector((state) => state.category);
-  useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+const NavBar = () => {
   const [searchItem, setSearchItem] = useState("");
   const handleOnSubmit = (e) => {
     e.preventDefault();
@@ -62,109 +57,65 @@ const NavBar = ({ children }) => {
       console.log(searchItem);
     }
   };
-  const classes = useStyles();
+
   const [isOpened, setIsOpened] = useState(false);
-  const parentCats = catList.filter((row) => !row.parentCat);
-  console.log(parentCats);
-  const childCats = catList.filter((row) => row.parentCat);
+
   /*  */
   return (
-    <Grid container>
-      <Grid item sm={12} container>
-        <AppBar position="fixed">
-          <Toolbar>
-            <Grid container maxWidth="lg" spacing={4}>
-              <Grid item sm={2}>
-                <IconButton
-                  // className="exampleClass :hover ::after"
-                  onClick={() => setIsOpened(!isOpened)}
-                >
-                  {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
-                </IconButton>
-              </Grid>
-              {/* <Grid container maxWidth="lg" spacing={4}> */}
-              <Grid item sm={3}>
-                <Typography variant="h6" color="secondary">
-                  <Link
-                    textDecoration="none"
-                    to="/home"
-                    underline="none"
-                    style={{ color: "black" }}
-                    className="exampleClass :hover ::after"
-                  >
-                    🤖TECH_STORE🤖
-                  </Link>
-                </Typography>
-              </Grid>
-              <Grid item sm={4}>
-                <form noValidate onSubmit={handleOnSubmit}>
-                  <TextField
-                    onChange={(e) => setSearchItem(e.target.value)}
-                    label="Search"
-                    size="small"
-                    required
-                    InputProps={{
-                      endAdornment: (
-                        <IconButton type="submit">
-                          <SearchIcon />
-                        </IconButton>
-                      ),
-                    }}
-                  />
-                </form>
-              </Grid>
-              <Grid item spacing={5} sm={3} justify-content="center" container>
-                <Grid item>
-                  <IconButton
-                    textDecoration="none"
-                    underline="none"
-                    className="exampleClass :hover ::after"
-                  >
-                    <MenuButton />
-                  </IconButton>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Toolbar>
-        </AppBar>
-        <Toolbar />
-      </Grid>
-      <Grid item sm={12} className="main">
-        <div className={classes.container}>
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: clsx(classes.drawer, {
-                [classes.closed]: !isOpened,
-                [classes.opened]: isOpened,
-              }),
-            }}
+    <Toolbar>
+      <Grid container maxWidth="lg" spacing={4}>
+        <Grid item sm={2}>
+          <IconButton
+            // className="exampleClass :hover ::after"
+            onClick={() => setIsOpened(!isOpened)}
           >
-            {isPending && <CircularProgress color="inherit" />}
-
-            {parentCats?.length &&
-              parentCats.map((row) => (
-                <List>
-                  <ListItem key={row._id}>
-                    {/* <Link style={{ color: "black" }}>
-                        <ListItemText primary={row.name} />{" "}
-                      </Link> */}
-                    <SubMenu
-                      parentName={row.name}
-                      parentId={row._id}
-                      childCatList={childCats}
-                    />
-                  </ListItem>
-                </List>
-              ))}
-          </Drawer>
-          <main className={classes.main}>
-            <div>{children}</div>
-            <div></div>
-          </main>
-        </div>
+            {isOpened ? <ChevronLeftIcon /> : <MenuOpenIcon />}
+          </IconButton>
+        </Grid>
+        {/* <Grid container maxWidth="lg" spacing={4}> */}
+        <Grid item sm={3}>
+          <Typography variant="h6" color="secondary">
+            <Link
+              textDecoration="none"
+              to="/home"
+              underline="none"
+              style={{ color: "black" }}
+              className="exampleClass :hover ::after"
+            >
+              🤖TECH_STORE🤖
+            </Link>
+          </Typography>
+        </Grid>
+        <Grid item sm={4}>
+          <form noValidate onSubmit={handleOnSubmit}>
+            <TextField
+              onChange={(e) => setSearchItem(e.target.value)}
+              label="Search"
+              size="small"
+              required
+              InputProps={{
+                endAdornment: (
+                  <IconButton type="submit">
+                    <SearchIcon />
+                  </IconButton>
+                ),
+              }}
+            />
+          </form>
+        </Grid>
+        <Grid item spacing={5} sm={3} justify-content="center" container>
+          <Grid item>
+            <IconButton
+              textDecoration="none"
+              underline="none"
+              className="exampleClass :hover ::after"
+            >
+              <MenuButton />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Grid>
-    </Grid>
+    </Toolbar>
   );
 };
 
