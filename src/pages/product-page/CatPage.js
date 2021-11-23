@@ -6,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import CatPageHeader from "../../components/cat-page-header/CatPageHeader";
 
 const useStyles = makeStyles({
   root: {
@@ -30,6 +31,9 @@ const CatPage = () => {
   console.log("sdfsdffdffffddfdfdf");
   return (
     <Grid container>
+      <Grid item>
+        <CatPageHeader catName={slug} />
+      </Grid>
       {currentProducts.map((item) => (
         <Grid item xs={12} sm={6} md={3} container>
           <Grid item>
